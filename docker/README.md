@@ -16,9 +16,9 @@ cd exercicio-1
 docker compose up --build
 ```
 
-Abra <http://localhost:3001>. Deve aparecer `Hello from Docker!`. Para encerrar, use `Ctrl+C` e depois `docker compose down`.
+Abra <http://localhost:3000>. Deve aparecer `Hello from Docker!`. Para encerrar, use `Ctrl+C` e depois `docker compose down`.
 
-Observe `Dockerfile`, `.dockerignore`, `compose.yaml`, `src/server.js` e o mapeamento da porta `3001:3000`.
+Observe `Dockerfile`, `.dockerignore`, `docker-compose.yml`, `src/server.js` e o mapeamento da porta `3000:3000`. A aplicação usa o módulo `node:http`, que já vem com Node.js, então não há dependências externas para instalar.
 
 ## Exercício 2 — API e banco
 
@@ -43,16 +43,16 @@ Use os mesmos dados e a API do exercício 2, com dois Compose independentes:
 ```powershell
 cd ..\exercicio-3
 Copy-Item .env.example .env
-docker compose -f compose.dev.yaml up --build
+docker compose -f docker-compose.dev.yml up --build
 ```
 
-O modo dev monta `src` como volume e reinicia a API quando o código muda. Em outro terminal, confira `http://localhost:3003/health`. Para parar, `docker compose -f compose.dev.yaml down`.
+O modo dev monta `src` como volume e reinicia a API quando o código muda. Em outro terminal, confira `http://localhost:3003/health`. Para parar, `docker compose -f docker-compose.dev.yml down`.
 
 ```powershell
-docker compose -f compose.prod.yaml up --build -d
+docker compose -f docker-compose.prod.yml up --build -d
 ```
 
-O modo prod usa estágio final enxuto, sem volume de código. Confira `http://localhost:3004/health`. Pare com `docker compose -f compose.prod.yaml down`.
+O modo prod usa estágio final enxuto, sem volume de código. Confira `http://localhost:3004/health`. Pare com `docker compose -f docker-compose.prod.yml down`.
 
 ## Desafio extra — API, PostgreSQL e Adminer
 
@@ -65,7 +65,7 @@ docker compose up --build -d
 - API: <http://localhost:3005/health> e <http://localhost:3005/messages>
 - Adminer: <http://localhost:8080>
 
-No Adminer, selecione **PostgreSQL** e use servidor `db`, usuário `orion`, senha `orion_dev_password` e banco `orion`. Crie uma mensagem pela API e consulte a tabela `messages`.
+No Adminer, selecione **PostgreSQL** e use servidor `db`, usuário `orion`, senha `orion_dev_password` e banco `orion`. A API fica em `api/`, seguindo a estrutura proposta no enunciado. Crie uma mensagem pela API e consulte a tabela `messages`.
 
 Pare os serviços com `docker compose down`; para remover também os dados persistidos, use `docker compose down -v`.
 

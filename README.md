@@ -4,12 +4,12 @@ Este repositório reúne os exercícios de Docker do EP2 do Bootcamp Orion. É u
 
 ## Conteúdo
 
-- `docker/exercicio-1`: aplicação Node.js simples, imagem própria e Compose para responder `Hello from Docker!`.
+- `docker/exercicio-1`: aplicação Node.js simples, imagem própria e Compose para responder `Hello from Docker!` em `http://localhost:3000`.
 - `docker/exercicio-2`: API Node.js conectada a PostgreSQL, com variáveis de ambiente, healthcheck, rede e volume nomeados.
 - `docker/exercicio-3`: a mesma ideia em ambientes de desenvolvimento e produção, com Compose separado e Dockerfile multi-stage.
 - `docker/exercicio-extra`: desafio completo com API, PostgreSQL persistente, rota `/health`, healthcheck do banco, variáveis de ambiente, rede e volume nomeados e interface Adminer.
 
-As instruções para executar cada parte estão em [`docker/README.md`](docker/README.md). Os arquivos Compose usam credenciais de demonstração para uso local. Não reutilize essas senhas em serviços reais.
+As instruções para executar cada parte estão em [`docker/README.md`](docker/README.md). Os arquivos Compose seguem os nomes solicitados no enunciado (`docker-compose.yml`, `docker-compose.dev.yml` e `docker-compose.prod.yml`) e usam credenciais de demonstração para uso local. Não reutilize essas senhas em serviços reais.
 
 ## Tecnologias
 

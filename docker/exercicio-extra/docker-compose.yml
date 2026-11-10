@@ -1,6 +1,7 @@
 services:
   api:
-    build: .
+    build:
+      context: ./api
     environment:
       DB_HOST: ${DB_HOST:-db}
       DB_PORT: ${DB_PORT:-5432}
@@ -10,7 +11,7 @@ services:
     ports:
       - "3005:3000"
     volumes:
-      - ./src:/app/src
+      - ./api/src:/app/src
     networks:
       - orion_desafio
     depends_on:
