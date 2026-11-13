@@ -1,0 +1,36 @@
+name: orion-ep3
+services:
+  db_postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: orion_db
+      POSTGRES_USER: orion_user
+      POSTGRES_PASSWORD: orion_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orion_user -d orion_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  db_mongo:
+    image: mongo:8.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: orion_admin
+      MONGO_INITDB_ROOT_PASSWORD: orion_admin_pass
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--username", "orion_admin", "--password", "orion_admin_pass", "--authenticationDatabase", "admin", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:
+  mongo_data:
